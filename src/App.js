@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Card from './components/card/Card';
+import jsonData from "./source-data.js";
 
 class App extends Component {
   render() {
@@ -13,6 +15,12 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+
+        {jsonData.map(card => {
+          return (
+            <Card key={card.name} name={card.name} imageLocation={card.img}></Card>
+          )
+        })}
       </div>
     );
   }
