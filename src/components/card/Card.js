@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Card.css";
 
 class Card extends Component {
 
@@ -17,9 +18,8 @@ class Card extends Component {
   render() {
     return (
       <div className="card">              
+        <div>{ this.props.correct ? '' : 'incorrect' }</div>
         <img src={this.props.imageLocation} alt="Type to guess"/>
-        <label htmlFor="type-guess">Your guess</label>
-      
         <input name="type-guess" type="text" value={this.props.guess} onChange={this.onGuessChange}/>
       </div>
     );

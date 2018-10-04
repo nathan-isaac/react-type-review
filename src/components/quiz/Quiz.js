@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Card from '../card/Card';
 import jsonData from "../../source-data.js";
+import "./Quiz.css";
 
 class Quiz extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Quiz extends Component {
         name: card.name,
         image_url: card.img,
         guess: '',
+        correct: null
       }
     });
 
@@ -24,6 +26,10 @@ class Quiz extends Component {
     }
 
     this.onGuessChange = this.onGuessChange.bind(this);
+    this.validate = this.validate.bind(this);
+    this.shuffleCards = this.shuffleCards.bind(this);
+    this.shuffleArray = this.shuffleArray.bind(this);
+    this.resetQuiz = this.resetQuiz.bind(this);
   }    
 
   onGuessChange({name, guess}) {
@@ -38,10 +44,44 @@ class Quiz extends Component {
     this.setState({cards: cards});
   }
 
+  validate() {
+    const cards = [...this.state.cards];
+
+    cards.forEach(card => {
+      card.correct = card.name.toLowerCase() === card.guess.toLocaleLowerCase();
+    });
+
+    this.setState({cards: cards});
+  }
+
+  shuffleCards() {
+    const cards = [...this.state.cards];
+    this.shuffleArray(cards);
+    this.setState({cards: cards});
+  }
+
+  shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // eslint-disable-line no-param-reassign
+    }
+  }
+
+  resetQuiz () {
+    const cards = [...this.state.cards];
+    cards.forEach(card => {
+      card.guess = "";
+      card.correct = null
+    });
+    this.setState({cards: cards});
+    this.shuffleCards();
+    // TODO: refactor above lines render twice
+  }
+
   renderCards() {
     return this.state.cards.map(card => {
       return (
-        <Card key={card.name} name={card.name} imageLocation={card.image_url} guess={card.guess} onGuessChange={this.onGuessChange}></Card>
+        <Card key={card.name} name={card.name} imageLocation={card.image_url} guess={card.guess} correct={card.correct} onGuessChange={this.onGuessChange}></Card>
       )
     })
   }
@@ -49,6 +89,10 @@ class Quiz extends Component {
   render() {
     return (
       <div className="quiz">
+        <button onClick={this.validate}>Validate</button>
+        <button onClick={this.shuffleCards}>Shuffle Order</button>
+        <button onClick={this.resetQuiz}>Reset Quiz</button>
+
         { this.renderCards() }
       </div>
     );
