@@ -4,34 +4,23 @@ class Card extends Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      guess: '',
-    }
-
-    this.onGuessSubmit = this.onGuessSubmit.bind(this);
     this.onGuessChange = this.onGuessChange.bind(this);
   }
 
   onGuessChange(e) {
-    e.preventDefault();
-    this.setState({guess: e.target.value});
-  }
-
-  onGuessSubmit(e) {
-    e.preventDefault();
-    this.props.onGuessSubmit(this.state.guess);
+    this.props.onGuessChange({
+      name: this.props.name,
+      guess: e.target.value
+    });
   }
 
   render() {
     return (
-      <div className="card">
-        <h3>{this.props.name}</h3>              
+      <div className="card">              
         <img src={this.props.imageLocation} alt="Type to guess"/>
         <label htmlFor="type-guess">Your guess</label>
       
-        <input name="type-guess" type="text" value={this.state.guess} onChange={this.onGuessChange}/>
-        <button onClick={this.onGuessSubmit}>Disturb Me</button>
+        <input name="type-guess" type="text" value={this.props.guess} onChange={this.onGuessChange}/>
       </div>
     );
   }

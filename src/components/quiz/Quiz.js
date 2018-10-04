@@ -6,8 +6,10 @@ class Quiz extends Component {
   constructor(props) {
     super(props);
 
-    const cards = jsonData.map(card => {
+
+    const cards = jsonData.map((card, index) => {
       return {
+        id: index,
         name: card.name,
         image_url: card.img,
         guess: '',
@@ -19,22 +21,27 @@ class Quiz extends Component {
       mode: "flashcard",
       namesHidden: true,
       cards: cards,
-    }        
+    }
+
+    this.onGuessChange = this.onGuessChange.bind(this);
   }    
 
-  onGuessSubmit(text) {
-    console.log("check this as an answer", text);
-    // const cards = this.state.cards;
+  onGuessChange({name, guess}) {
+    const cards = [...this.state.cards];
 
-    // cards[index].guess = guess;
+    const card = cards.find(card => {
+      return card.name === name;
+    });
 
-    // this.setState({cards: cards})
+    card.guess = guess;
+
+    this.setState({cards: cards});
   }
 
   renderCards() {
     return this.state.cards.map(card => {
       return (
-        <Card key={card.name} name={card.name} imageLocation={card.img} guess={card.guess} onGuessSubmit={this.onGuessSubmit}></Card>
+        <Card key={card.name} name={card.name} imageLocation={card.image_url} guess={card.guess} onGuessChange={this.onGuessChange}></Card>
       )
     })
   }
