@@ -9,9 +9,10 @@ class Card extends Component {
   }
 
   onGuessChange(e) {
+    // ReviewUseCase.answerQuestion()
     this.props.onGuessChange({
-      name: this.props.name,
-      guess: e.target.value
+      id: this.props.id,
+      answer: e.target.value
     });
   }
 

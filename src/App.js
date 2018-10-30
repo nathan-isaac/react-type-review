@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Quiz from "./components/quiz/Quiz";
+import ReviewQuiz from "./components/review-quiz/ReviewQuiz";
 
 
 class App extends Component {
@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Quiz></Quiz>
+        <ReviewQuiz></ReviewQuiz>
       </div>
     );
   }
