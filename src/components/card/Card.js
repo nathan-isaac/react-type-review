@@ -42,6 +42,7 @@ class Card extends Component {
           type="text"
           value={this.props.guess}
           onChange={this.onGuessChange}
+          readOnly={this.props.submitted}
         />
       </div>
     );

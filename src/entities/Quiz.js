@@ -20,6 +20,7 @@ export default class Quiz {
   }
 
   submit() {
+    this.showAnswers = true;
     this.ended = true;
   }
 
