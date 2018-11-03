@@ -23,10 +23,15 @@ export default class ReviewQuizSessionUseCase {
     this.createQuiz();
   }
 
+  toggleAnswers() {
+    this.quiz.toggleAnswers();
+  }
+
   viewModel() {
     const questions = this.quiz.questions.map(question => {
       return {
         id: question.id,
+        correctAnswer: question.correctAnswer,
         answer: question.answer,
         isCorrect: question.isCorrect(),
         imageUrl: question.imageUrl
@@ -36,6 +41,7 @@ export default class ReviewQuizSessionUseCase {
     const session = {
       questions: questions,
       submitted: this.quiz.ended,
+      showAnswers: this.quiz.showAnswers,
     };
 
     return session;

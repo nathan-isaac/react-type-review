@@ -1,6 +1,7 @@
 export default class Quiz {
   constructor(questions = []) {
     this.ended = false;
+    this.showAnswers = false;
     this.questions = questions;
   }
 
@@ -18,5 +19,9 @@ export default class Quiz {
 
   submit() {
     this.ended = true;
+  }
+
+  toggleAnswers() {
+    this.showAnswers = !this.showAnswers;
   }
 }

@@ -27,8 +27,15 @@ class Card extends Component {
   }
 
   render() {
+    let answerText;
+
+    if (this.props.showAnswers) {
+      answerText = <h1>{this.props.correctAnswer}</h1>;
+    }
+
     return (
       <div className={this.classes}>
+        {answerText}
         <img src={this.props.imageUrl} alt="Type to guess" />
         <input
           name="type-guess"

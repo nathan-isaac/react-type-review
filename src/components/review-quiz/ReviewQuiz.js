@@ -17,6 +17,7 @@ class ReviewQuiz extends Component {
     this.onGuessChange = this.onGuessChange.bind(this);
     this.validate = this.validate.bind(this);
     this.resetQuiz = this.resetQuiz.bind(this);
+    this.toggleAnswers = this.toggleAnswers.bind(this);
   }
 
   onGuessChange({ id, answer }) {
@@ -43,11 +44,20 @@ class ReviewQuiz extends Component {
     this.setState(this.usecase.viewModel());
   }
 
+  toggleAnswers() {
+    console.log("toggle answers");
+
+    this.usecase.toggleAnswers();
+
+    this.setState(this.usecase.viewModel());
+  }
+
   render() {
     return (
       <div className="quiz">
         <button onClick={this.validate}>Check Answers</button>
         <button onClick={this.resetQuiz}>Reset</button>
+        <button onClick={this.toggleAnswers}>Toggle Answers</button>
 
         {this.renderCards()}
       </div>
@@ -62,8 +72,10 @@ class ReviewQuiz extends Component {
           id={question.id}
           imageUrl={question.imageUrl}
           guess={question.answer}
+          correctAnswer={question.correctAnswer}
           correct={question.isCorrect}
           submitted={this.state.submitted}
+          showAnswers={this.state.showAnswers}
           onGuessChange={this.onGuessChange}
         />
       );
