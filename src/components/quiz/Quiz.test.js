@@ -12,7 +12,6 @@
 
 // lets us reset the quiz to try again
 
-
-it('do something', () => {
+it("do something", () => {
   expect(true).toBe(true);
 });

@@ -16,21 +16,26 @@ class Card extends Component {
 
   get classes() {
     if (!this.props.sumitted) {
-      return 'card';
+      return "card";
     }
 
     if (this.props.correct) {
-      return 'card card--success';
+      return "card card--success";
     } else {
-      return 'card card--failure';
+      return "card card--failure";
     }
   }
 
   render() {
     return (
-      <div className={this.classes}>              
-        <img src={this.props.imageUrl} alt="Type to guess"/>
-        <input name="type-guess" type="text" value={this.props.guess} onChange={this.onGuessChange}/>
+      <div className={this.classes}>
+        <img src={this.props.imageUrl} alt="Type to guess" />
+        <input
+          name="type-guess"
+          type="text"
+          value={this.props.guess}
+          onChange={this.onGuessChange}
+        />
       </div>
     );
   }
