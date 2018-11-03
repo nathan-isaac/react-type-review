@@ -1,8 +1,10 @@
+import shuffleArray from "../support/shuffleArray.js";
+
 export default class Quiz {
   constructor(questions = []) {
     this.ended = false;
     this.showAnswers = false;
-    this.questions = questions;
+    this.questions = shuffleArray(questions);
   }
 
   addQuestion(question) {
