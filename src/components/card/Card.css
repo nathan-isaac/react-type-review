@@ -6,9 +6,18 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
 }
 
 .card img {
   width: 95%;
   padding: 1em;
+}
+
+.card--success {
+  border: 2px solid #02C851;
+}
+
+.card--failure {
+  border: 2px solid #DF4C41;
 }

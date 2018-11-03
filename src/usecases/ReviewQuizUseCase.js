@@ -1,4 +1,6 @@
 
+import Quiz from '../entities/Quiz.js';
+
 export default class ReviewQuizSessionUseCase {
     constructor(questionGateway) {
         const questions = questionGateway.allQuestions();
@@ -34,10 +36,10 @@ export default class ReviewQuizSessionUseCase {
 
             return {
                 id: question.id,
-                isCorrect: question.isCorrect(),
-                showImage: question.showImage,
-                imageUrl: question.imageUrl,
                 answer: question.answer,
+                isCorrect: question.isCorrect(),
+                // showImage: question.showImage,
+                imageUrl: question.imageUrl,
             }
         });
 
