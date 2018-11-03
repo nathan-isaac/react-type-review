@@ -15,7 +15,7 @@ class Card extends Component {
   }
 
   get classes() {
-    if (!this.props.sumitted) {
+    if (!this.props.submitted) {
       return "card";
     }
 

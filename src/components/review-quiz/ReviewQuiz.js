@@ -37,6 +37,10 @@ class ReviewQuiz extends Component {
 
   resetQuiz() {
     console.log("reset quiz");
+
+    this.usecase.reset();
+
+    this.setState(this.usecase.viewModel());
   }
 
   render() {
@@ -59,6 +63,7 @@ class ReviewQuiz extends Component {
           imageUrl={question.imageUrl}
           guess={question.answer}
           correct={question.isCorrect}
+          submitted={this.state.submitted}
           onGuessChange={this.onGuessChange}
         />
       );

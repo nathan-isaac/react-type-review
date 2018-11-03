@@ -5,7 +5,7 @@ export default class Quiz {
   }
 
   addQuestion(question) {
-    this.question.push(question);
+    this.questions.push(question);
   }
 
   answerQuestion(questionId, answerText) {
@@ -16,7 +16,7 @@ export default class Quiz {
     question.setAnswer(answerText);
   }
 
-  end() {
+  submit() {
     this.ended = true;
   }
 }
